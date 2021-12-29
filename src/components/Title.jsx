@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { FiMoreHorizontal } from 'react-icons/fi';
 
@@ -6,6 +6,12 @@ const Title = () => {
   const [isEditMode, setisEditMode] = useState(false);
   const [text, setText] = useState('Todo');
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (isEditMode) {
+      inputRef.current.focus();
+    }
+  }, [isEditMode]);
 
   const handleClick = () => {
     setisEditMode(true);

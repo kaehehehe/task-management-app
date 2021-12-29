@@ -1,27 +1,38 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { FiMoreHorizontal } from 'react-icons/fi';
 
 const Title = () => {
-  const [open, setOpen] = useState(false);
+  const [isEditMode, setisEditMode] = useState(false);
   const [text, setText] = useState('Todo');
+  const inputRef = useRef(null);
 
-  const handleText = () => {
-    setOpen(true);
+  const handleClick = () => {
+    setisEditMode(true);
   };
 
-  const handleEditInput = (e) => {
-    setOpen(false);
-    setText(e.target.value);
+  const handleBlur = (e) => {
+    setisEditMode(false);
+  };
+
+  const handleEditInput = () => {
+    const newText = inputRef.current.value;
+    setText(newText);
   };
 
   return (
     <>
-      {open ? (
-        <EditInput defaultValue={text} onBlur={handleEditInput} />
+      {isEditMode ? (
+        <EditInput
+          type="text"
+          value={text}
+          ref={inputRef}
+          onChange={handleEditInput}
+          onBlur={handleBlur}
+        />
       ) : (
         <TextContainer>
-          <Text onClick={handleText}>{text}</Text>
+          <Text onClick={handleClick}>{text}</Text>
           <FiMoreHorizontal />
         </TextContainer>
       )}

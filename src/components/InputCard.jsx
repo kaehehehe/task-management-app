@@ -1,32 +1,18 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import AddCard from './AddCard';
 
 const InputCard = () => {
   const [open, setOpen] = useState(false);
-  const [text, setText] = useState('');
-  const cardRef = useRef(null);
 
   const handleText = () => {
     setOpen(true);
   };
 
-  const handleAddCard = () => {
-    const text = cardRef.current.value;
-    setText(text);
-    setOpen(false);
-  };
-
   return (
     <InputCardContainer>
       {open ? (
-        <AddCard
-          type="text"
-          ref={cardRef}
-          onChange={handleAddCard}
-          setOpen={setOpen}
-          value={text}
-        />
+        <AddCard setOpen={setOpen} />
       ) : (
         <Text onClick={handleText}>+ Add a task</Text>
       )}

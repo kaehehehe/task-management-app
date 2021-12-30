@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Card = () => {
-  return <CardContainer>study programming</CardContainer>;
+const Card = ({ text }) => {
+  return <CardContainer>{text}</CardContainer>;
 };
 
 const CardContainer = styled.div`

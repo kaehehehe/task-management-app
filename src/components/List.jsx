@@ -2,6 +2,7 @@ import React from 'react';
 import Title from './Title';
 import Card from './Card';
 import styled from 'styled-components';
+import InputCard from './InputCard';
 
 
 const List = () => {
@@ -11,6 +12,7 @@ const List = () => {
       <Card />
       <Card />
       <Card />
+      <InputCard />
     </ListContainer>
   );
 };
